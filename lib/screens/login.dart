@@ -1,7 +1,11 @@
 import 'package:example_flutter1/const/color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
+
+enum Language {
+  th,
+  en,
+}
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key? key}) : super(key: key);
@@ -11,6 +15,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  Language languageSelected = Language.th;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,35 +57,89 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   // left widget - need help
-                  Row(
-                    children: [
-                      Text(
-                        "ต้องการความช่วยเหลือ ",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
+                  needHelp(),
+                  GestureDetector(
+                    onTap: () {
+                      Get.defaultDialog(
+                        title: "เลือกภาษา",
+                        content: Column(
+                          children: [
+                            languageMenu(
+                              language: Language.th,
+                              label: "ภาษาไทย",
+                              languageSelected: languageSelected,
+                            ),
+                            languageMenu(
+                              language: Language.en,
+                              label: "ภาษาอังกฤษ",
+                              languageSelected: languageSelected,
+                            ),
+                          ],
                         ),
-                      ),
-                      Text(
-                        "คลิก",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
+                      );
+                    },
+                    child: Image.asset(
+                      imagePathLanguage(languageSelected),
+                      width: 24,
+                    ),
                   ),
-                  Image.asset(
-                    "assets/thai-flag.png",
-                    width: 24,
-                  )
                 ],
               ),
             ),
           ],
         ),
       ),
+    );
+  }
+
+  String imagePathLanguage(Language language) {
+    return language == Language.th
+        ? "assets/thai-flag.png"
+        : "assets/eng-flag.png";
+  }
+
+  Widget languageMenu({
+    required Language language,
+    required String label,
+    required Language languageSelected,
+  }) {
+    return ListTile(
+      leading: Image.asset(
+        imagePathLanguage(language),
+        width: 24,
+      ),
+      title: Text(label),
+      trailing: language == languageSelected
+          ? Icon(Icons.check, color: AppColors.red)
+          : null,
+      onTap: () {
+        setState(() {
+          this.languageSelected = language;
+        });
+        Get.back();
+      },
+    );
+  }
+
+  Widget needHelp() {
+    return Row(
+      children: [
+        Text(
+          "ต้องการความช่วยเหลือ ",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 16,
+          ),
+        ),
+        Text(
+          "คลิก",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ],
     );
   }
 
