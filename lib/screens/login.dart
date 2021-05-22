@@ -1,5 +1,8 @@
 import 'package:example_flutter1/const/color.dart';
+import 'package:example_flutter1/models/user_model.dart';
 import 'package:example_flutter1/screens/home.dart';
+import 'package:example_flutter1/services/user_service.dart';
+import 'package:example_flutter1/widgets/logo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -40,7 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     top: Get.height * 0.1,
                   ),
                   // column logo
-                  child: logo(),
+                  child: Logo(),
                 ),
                 Container(
                   width: Get.width * 0.8,
@@ -162,33 +165,28 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         backgroundColor: MaterialStateProperty.all(Colors.yellow.shade700),
       ),
-      onPressed: () {
-        Get.to(HomeScreen());
-      },
-    );
-  }
+      onPressed: () async {
+        UserService().getUser().then((user) {
+          Get.to(HomeScreen(
+            fname: user.fname,
+            lname: user.lname!,
+          ));
+        }).catchError((error) {
+          print("getUser: $error");
+          // handle exception
+        });
 
-  Column logo() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: [
-        Text(
-          "Kept",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 64,
-            fontWeight: FontWeight.bold,
-            height: 1,
-          ),
-        ),
-        Text(
-          "by krungsri",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 16,
-          ),
-        ),
-      ],
+        try {
+          UserModel user = await UserService().getUser();
+          Get.to(HomeScreen(
+            fname: user.fname,
+            lname: user.lname!,
+          ));
+        } catch (error) {
+          print("getUser: $error");
+          // handle exception
+        }
+      },
     );
   }
 }
