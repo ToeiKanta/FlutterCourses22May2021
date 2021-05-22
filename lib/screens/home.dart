@@ -6,10 +6,12 @@ import 'package:get/get.dart';
 class HomeScreen extends StatelessWidget {
   final String fname;
   final String lname;
+  final String email;
   HomeScreen({
     Key? key,
     required this.fname,
     required this.lname,
+    required this.email,
   }) : super(key: key);
 
   @override
@@ -37,6 +39,20 @@ class HomeScreen extends StatelessWidget {
               ),
               child: Text(
                 "สวัสดีคุณ$fname $lname",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.yellow.shade700,
+                  fontSize: 24,
+                ),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(
+                top: Get.height * 0.1,
+              ),
+              child: Text(
+                "email: $email",
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.yellow.shade700,
                   fontSize: 24,
