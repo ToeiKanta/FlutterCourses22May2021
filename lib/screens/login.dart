@@ -1,4 +1,5 @@
 import 'package:example_flutter1/const/color.dart';
+import 'package:example_flutter1/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -161,7 +162,9 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         backgroundColor: MaterialStateProperty.all(Colors.yellow.shade700),
       ),
-      onPressed: () {},
+      onPressed: () {
+        Get.to(HomeScreen());
+      },
     );
   }
 
