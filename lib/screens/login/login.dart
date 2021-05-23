@@ -2,6 +2,7 @@ import 'package:example_flutter1/const/color.dart';
 import 'package:example_flutter1/models/user_model.dart';
 import 'package:example_flutter1/models/user_model2.dart';
 import 'package:example_flutter1/screens/home.dart';
+import 'package:example_flutter1/screens/login/login_controller.dart';
 import 'package:example_flutter1/services/user_service.dart';
 import 'package:example_flutter1/widgets/logo.dart';
 import 'package:flutter/material.dart';
@@ -39,6 +40,13 @@ class _LoginScreenState extends State<LoginScreen> {
             // top widget
             Column(
               children: [
+                Container(
+                  child: GetBuilder<LoginController>(
+                      init: LoginController(),
+                      builder: (controller) {
+                        return Text(controller.title);
+                      }),
+                ),
                 Container(
                   margin: EdgeInsets.only(
                     top: Get.height * 0.1,
