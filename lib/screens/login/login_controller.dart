@@ -1,7 +1,8 @@
 import 'package:get/get.dart';
 
 class LoginController extends GetxController {
-  String title = "แอพของฉัน";
+  String title1 = "title1";
+  var title2 = RxString('"title2"');
 
   @override
   void onInit() {
@@ -9,7 +10,8 @@ class LoginController extends GetxController {
     super.onInit();
     Future.delayed(Duration(seconds: 5)).then((value) {
       print("delay success");
-      title = "12123";
+      title1 = "12123";
+      title2.value = "คนบ้า";
       update();
     });
   }
