@@ -1,8 +1,5 @@
 import 'package:example_flutter1/const/color.dart';
-import 'package:example_flutter1/models/user_model.dart';
-import 'package:example_flutter1/models/user_model2.dart';
 import 'package:example_flutter1/screens/login/login_controller.dart';
-import 'package:example_flutter1/services/user_service.dart';
 import 'package:example_flutter1/widgets/logo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
