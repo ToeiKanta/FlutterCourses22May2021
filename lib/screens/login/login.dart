@@ -13,7 +13,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  Language languageSelected = Language.th;
   var controller = Get.find<LoginController>();
 
   @override
@@ -66,19 +65,20 @@ class _LoginScreenState extends State<LoginScreen> {
                             languageMenu(
                               language: Language.th,
                               label: "ภาษาไทย",
-                              languageSelected: languageSelected,
+                              languageSelected: controller.languageSelected,
                             ),
                             languageMenu(
                               language: Language.en,
                               label: "ภาษาอังกฤษ",
-                              languageSelected: languageSelected,
+                              languageSelected: controller.languageSelected,
                             ),
                           ],
                         ),
                       );
                     },
                     child: Image.asset(
-                      controller.getImagePathLanguage(languageSelected),
+                      controller
+                          .getImagePathLanguage(controller.languageSelected),
                       width: 24,
                     ),
                   ),
@@ -106,9 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ? Icon(Icons.check, color: AppColors.red)
           : null,
       onTap: () {
-        setState(() {
-          this.languageSelected = language;
-        });
+        controller.setLanguageSelected(language);
         Get.back();
       },
     );
