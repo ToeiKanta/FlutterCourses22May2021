@@ -21,7 +21,11 @@ class MyApp extends StatelessWidget {
       initialRoute: '/login',
       getPages: [
         GetPage(
-            name: "/login", page: () => LoginScreen(), binding: LoginBinding()),
+            name: "/login",
+            page: () => LoginScreen(),
+            binding: BindingsBuilder(() {
+              Get.put(LoginController());
+            })),
         GetPage(
           name: "/home",
           page: () => HomeScreen(),
@@ -33,8 +37,5 @@ class MyApp extends StatelessWidget {
 
 class LoginBinding extends Bindings {
   @override
-  void dependencies() {
-    print("put logincontroller");
-    Get.put(LoginController());
-  }
+  void dependencies() {}
 }
