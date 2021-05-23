@@ -13,7 +13,7 @@ import 'login_controller_test.mocks.dart';
 @GenerateMocks([UserService])
 main() {
   group("getImagePathLanguage", () {
-    var controller = LoginController(MockUserService());
+    var controller = LoginController(MockUserService(), MockLoginView());
     test("should return flag th", () {
       var actual = controller.getImagePathLanguage(Language.th);
       expect(actual, "assets/thai-flag.png");
@@ -27,13 +27,13 @@ main() {
 
   group("setLanguageSelected", () {
     test("should language selected as th", () {
-      var controller = LoginController(MockUserService());
+      var controller = LoginController(MockUserService(), MockLoginView());
       controller.setLanguageSelected(Language.th);
       expect(controller.languageSelected.value, Language.th);
     });
 
     test("should language selected as en", () {
-      var controller = LoginController(MockUserService());
+      var controller = LoginController(MockUserService(), MockLoginView());
       controller.setLanguageSelected(Language.en);
       expect(controller.languageSelected.value, Language.en);
     });
@@ -41,7 +41,8 @@ main() {
 
   test("onSubmit", () async {
     var mockUserService = MockUserService();
-    var controller = LoginController(mockUserService);
+    var mockView = MockLoginView();
+    var controller = LoginController(mockUserService, mockView);
     var userInfo = {
       "id": 1,
       "name": "Leanne Graham",
@@ -67,3 +68,5 @@ main() {
     await controller.onSubmit();
   });
 }
+
+class MockLoginView extends Mock implements LoginView {}

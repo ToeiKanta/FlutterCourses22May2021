@@ -24,9 +24,7 @@ class MyApp extends StatelessWidget {
         GetPage(
             name: "/login",
             page: () => LoginScreen(),
-            binding: BindingsBuilder(() {
-              Get.put(LoginController(UserService()));
-            })),
+            binding: BindingsBuilder(() {})),
         GetPage(
           name: "/home",
           page: () => HomeScreen(),
