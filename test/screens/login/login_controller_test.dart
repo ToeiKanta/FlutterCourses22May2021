@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:example_flutter1/enums/language.dart';
 import 'package:example_flutter1/models/user_model.dart';
 import 'package:example_flutter1/screens/login/login_controller.dart';
@@ -63,9 +61,11 @@ main() {
         "bs": "harness real-time e-markets"
       }
     };
-    when(mockUserService.getUser())
-        .thenAnswer((_) => Future.value(UserModel.fromJson(userInfo)));
+
+    var userModel = UserModel.fromJson(userInfo);
+    when(mockUserService.getUser()).thenAnswer((_) => Future.value(userModel));
     await controller.onSubmit();
+    verify(mockView.gotoHome(userModel));
   });
 }
 
