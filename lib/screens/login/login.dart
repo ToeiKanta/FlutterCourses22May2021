@@ -50,12 +50,26 @@ class _LoginScreenState extends State<LoginScreen> {
                       }),
                 ),
                 Container(
+                  child: GetBuilder<LoginController>(
+                      init: LoginController(),
+                      builder: (controller) {
+                        print("GetBuilder 2 build title 4");
+                        return Text(controller.title4);
+                      }),
+                ),
+                Container(
                   child: GetX<LoginController>(
                       init: LoginController(),
                       builder: (controller) {
                         print("GetX build title 2");
                         return Text(controller.title2.value);
                       }),
+                ),
+                Container(
+                  child: Obx(() {
+                    print("Obx build title 3");
+                    return Text(Get.find<LoginController>().title3.value);
+                  }),
                 ),
                 Container(
                   margin: EdgeInsets.only(
