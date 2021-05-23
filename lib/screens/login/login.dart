@@ -1,19 +1,17 @@
 import 'package:example_flutter1/const/color.dart';
 import 'package:example_flutter1/enums/language.dart';
+import 'package:example_flutter1/models/user_model.dart';
 import 'package:example_flutter1/screens/login/login_controller.dart';
+import 'package:example_flutter1/services/user_service.dart';
 import 'package:example_flutter1/widgets/logo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class LoginScreen extends StatefulWidget {
-  LoginScreen({Key? key}) : super(key: key);
-
-  @override
-  _LoginScreenState createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  var controller = Get.find<LoginController>();
+class LoginScreen extends StatelessWidget implements LoginView {
+  late final controller;
+  LoginScreen() {
+    controller = Get.put(LoginController(UserService(), this));
+  }
 
   @override
   Widget build(BuildContext pucontext) {
@@ -158,5 +156,13 @@ class _LoginScreenState extends State<LoginScreen> {
         controller.onSubmit();
       },
     );
+  }
+
+  @override
+  gotoHome(UserModel user) {
+    Get.toNamed('/home', arguments: {
+      "name": user.name,
+      "email": user.email,
+    });
   }
 }

@@ -5,8 +5,10 @@
 import 'dart:async' as _i4;
 
 import 'package:example_flutter1/models/user_model.dart' as _i2;
+import 'package:example_flutter1/screens/login/login_controller.dart';
 import 'package:example_flutter1/services/user_service.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:mockito/mockito.dart';
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: comment_references

@@ -3,11 +3,16 @@ import 'package:example_flutter1/models/user_model.dart';
 import 'package:example_flutter1/services/user_service.dart';
 import 'package:get/get.dart';
 
+class LoginView {
+  gotoHome(UserModel user) {}
+}
+
 class LoginController extends GetxController {
   final UserService userService;
+  final LoginView view;
   var languageSelected = Rx<Language>(Language.th);
 
-  LoginController(this.userService);
+  LoginController(this.userService, this.view);
 
   @override
   void onInit() {
@@ -17,17 +22,10 @@ class LoginController extends GetxController {
   Future<void> onSubmit() async {
     try {
       UserModel user = await getUser(); // call service
-      gotoHome(user);
+      this.view.gotoHome(user);
     } catch (error) {
       print("getUser: $error");
     }
-  }
-
-  void gotoHome(UserModel user) {
-    Get.toNamed('/home', arguments: {
-      "name": user.name,
-      "email": user.email,
-    });
   }
 
   Future<UserModel> getUser() async {
