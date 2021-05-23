@@ -50,14 +50,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       }),
                 ),
                 Container(
-                  child: GetX<LoginController>(
-                      init: LoginController(),
-                      builder: (controller) {
-                        print("GetX build title 2");
-                        return Text(controller.title2.value);
-                      }),
-                ),
-                Container(
                   margin: EdgeInsets.only(
                     top: Get.height * 0.1,
                   ),
