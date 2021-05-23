@@ -4,7 +4,9 @@ import 'package:example_flutter1/services/user_service.dart';
 import 'package:get/get.dart';
 
 class LoginController extends GetxController {
+  final UserService userService;
   var languageSelected = Rx<Language>(Language.th);
+  LoginController(this.userService);
 
   @override
   void onInit() {
@@ -28,7 +30,7 @@ class LoginController extends GetxController {
   }
 
   Future<UserModel> getUser() async {
-    UserModel user = await UserService().getUser();
+    UserModel user = await userService.getUser();
     return user;
   }
 

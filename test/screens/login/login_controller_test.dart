@@ -4,10 +4,12 @@ import 'package:example_flutter1/services/user_service.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 
+import 'login_controller_test.mocks.dart';
+
 @GenerateMocks([UserService])
 main() {
   group("getImagePathLanguage", () {
-    var controller = LoginController();
+    var controller = LoginController(MockUserService());
     test("should return flag th", () {
       var actual = controller.getImagePathLanguage(Language.th);
       expect(actual, "assets/thai-flag.png");
@@ -21,20 +23,21 @@ main() {
 
   group("setLanguageSelected", () {
     test("should language selected as th", () {
-      var controller = LoginController();
+      var controller = LoginController(MockUserService());
       controller.setLanguageSelected(Language.th);
       expect(controller.languageSelected.value, Language.th);
     });
 
     test("should language selected as en", () {
-      var controller = LoginController();
+      var controller = LoginController(MockUserService());
       controller.setLanguageSelected(Language.en);
       expect(controller.languageSelected.value, Language.en);
     });
   });
 
   test("onSubmit", () async {
-    var controller = LoginController();
+    var mockUserService = MockUserService();
+    var controller = LoginController(mockUserService);
     await controller.onSubmit();
   });
 }

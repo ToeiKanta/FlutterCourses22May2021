@@ -1,6 +1,7 @@
 import 'package:example_flutter1/screens/Login/login.dart';
 import 'package:example_flutter1/screens/home.dart';
 import 'package:example_flutter1/screens/login/login_controller.dart';
+import 'package:example_flutter1/services/user_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
             name: "/login",
             page: () => LoginScreen(),
             binding: BindingsBuilder(() {
-              Get.put(LoginController());
+              Get.put(LoginController(UserService()));
             })),
         GetPage(
           name: "/home",
