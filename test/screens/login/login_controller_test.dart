@@ -15,4 +15,10 @@ main() {
       expect(actual, "assets/eng-flag.png");
     });
   });
+
+  test("should language selected as th", () {
+    var controller = LoginController();
+    controller.setLanguageSelected(Language.th);
+    expect(controller.languageSelected.value, Language.th);
+  });
 }
