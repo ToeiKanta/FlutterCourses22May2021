@@ -25,6 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print("build");
     return Scaffold(
       backgroundColor: AppColors.red,
       body: Container(
@@ -44,6 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: GetBuilder<LoginController>(
                       init: LoginController(),
                       builder: (controller) {
+                        print("build title");
                         return Text(controller.title);
                       }),
                 ),
