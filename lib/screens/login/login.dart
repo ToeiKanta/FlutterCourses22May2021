@@ -1,13 +1,9 @@
 import 'package:example_flutter1/const/color.dart';
+import 'package:example_flutter1/enums/language.dart';
 import 'package:example_flutter1/screens/login/login_controller.dart';
 import 'package:example_flutter1/widgets/logo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-enum Language {
-  th,
-  en,
-}
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key? key}) : super(key: key);
@@ -18,6 +14,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   Language languageSelected = Language.th;
+  var controller = Get.find<LoginController>();
 
   @override
   Widget build(BuildContext pucontext) {
@@ -81,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       );
                     },
                     child: Image.asset(
-                      imagePathLanguage(languageSelected),
+                      controller.getImagePathLanguage(languageSelected),
                       width: 24,
                     ),
                   ),
@@ -94,12 +91,6 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  String imagePathLanguage(Language language) {
-    return language == Language.th
-        ? "assets/thai-flag.png"
-        : "assets/eng-flag.png";
-  }
-
   Widget languageMenu({
     required Language language,
     required String label,
@@ -107,7 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }) {
     return ListTile(
       leading: Image.asset(
-        imagePathLanguage(language),
+        controller.getImagePathLanguage(language),
         width: 24,
       ),
       title: Text(label),
@@ -164,7 +155,7 @@ class _LoginScreenState extends State<LoginScreen> {
         backgroundColor: MaterialStateProperty.all(Colors.yellow.shade700),
       ),
       onPressed: () {
-        Get.find<LoginController>().onSubmit();
+        controller.onSubmit();
       },
     );
   }
