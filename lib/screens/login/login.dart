@@ -24,10 +24,16 @@ class _LoginScreenState extends State<LoginScreen> {
   Language languageSelected = Language.th;
 
   @override
-  Widget build(BuildContext context) {
-    print("build login screen");
+  void initState() {
+    super.initState();
+    Get.lazyPut(() => LoginController());
+    print("lazyPut LoginController");
+  }
 
-    var controller = Get.put(LoginController());
+  @override
+  Widget build(BuildContext pucontext) {
+    print("build login screen");
+    var controller = Get.find<LoginController>();
 
     return Scaffold(
       backgroundColor: AppColors.red,
