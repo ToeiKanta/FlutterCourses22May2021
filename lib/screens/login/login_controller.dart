@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 class LoginController extends GetxController {
   final UserService userService;
   var languageSelected = Rx<Language>(Language.th);
+
   LoginController(this.userService);
 
   @override

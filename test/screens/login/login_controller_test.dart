@@ -9,7 +9,8 @@ import 'login_controller_test.mocks.dart';
 @GenerateMocks([UserService])
 main() {
   group("test getImagePathLanguage function", () {
-    var controller = LoginController();
+    var mockUserService = MockUserService();
+    var controller = LoginController(mockUserService);
     test("should retrun flag th", () {
       var actual = controller.getImagePathLanguage(Language.th);
       expect(actual, "assets/thai-flag.png");
@@ -20,7 +21,8 @@ main() {
     });
   });
   group("test setLanguageSelected function", () {
-    var controller = LoginController();
+    var mockUserService = MockUserService();
+    var controller = LoginController(mockUserService);
     test("check languageSelected.value = th", () {
       controller.setLanguageSelected(Language.th);
       expect(controller.languageSelected.value, Language.th);
