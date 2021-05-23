@@ -26,14 +26,16 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     super.initState();
-    Get.lazyPut(() => LoginController());
-    print("lazyPut LoginController");
+    Get.create(() => LoginController());
   }
 
   @override
   Widget build(BuildContext pucontext) {
-    print("build login screen");
     var controller = Get.find<LoginController>();
+    var controlle2 = Get.find<LoginController>();
+
+    print("controller 1 " + controller.hashCode.toString());
+    print("controller 2 " + controlle2.hashCode.toString());
 
     return Scaffold(
       backgroundColor: AppColors.red,
@@ -71,7 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Container(
                   child: Obx(() {
                     print("Obx build title 4");
-                    return Text(controller.title4.value);
+                    return Text(controlle2.title4.value);
                   }),
                 ),
                 Container(
