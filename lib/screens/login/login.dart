@@ -168,12 +168,9 @@ class _LoginScreenState extends State<LoginScreen> {
       onPressed: () async {
         try {
           UserModel user = await UserService().getUser(); // call service
-          UserModel2 user2 = await UserService().getUser2(); // call service
-
           Get.toNamed('/home', arguments: {
-            "fname": user.fname,
-            "lname": user.lname!,
-            "email": user2.email,
+            "name": user.name,
+            "email": user.email,
           });
         } catch (error) {
           print("getUser: $error");
