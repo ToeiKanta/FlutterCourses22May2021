@@ -26,6 +26,9 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     print("build login screen");
+
+    var controller = Get.put(LoginController());
+
     return Scaffold(
       backgroundColor: AppColors.red,
       body: Container(
@@ -42,33 +45,27 @@ class _LoginScreenState extends State<LoginScreen> {
             Column(
               children: [
                 Container(
-                  child: GetBuilder<LoginController>(
-                      init: LoginController(),
-                      builder: (controller) {
-                        print("GetBuilder build title 1");
-                        return Text(controller.title1);
-                      }),
+                  child: GetBuilder<LoginController>(builder: (_) {
+                    print("GetBuilder build title 1");
+                    return Text(controller.title1);
+                  }),
                 ),
                 Container(
-                  child: GetBuilder<LoginController>(
-                      init: LoginController(),
-                      builder: (controller) {
-                        print("GetBuilder build title 2");
-                        return Text(controller.title2);
-                      }),
+                  child: GetBuilder<LoginController>(builder: (_) {
+                    print("GetBuilder build title 2");
+                    return Text(controller.title2);
+                  }),
                 ),
                 Container(
-                  child: GetX<LoginController>(
-                      init: LoginController(),
-                      builder: (controller) {
-                        print("GetX build title 3");
-                        return Text(controller.title3.value);
-                      }),
+                  child: GetX<LoginController>(builder: (_) {
+                    print("GetX build title 3");
+                    return Text(controller.title3.value);
+                  }),
                 ),
                 Container(
                   child: Obx(() {
                     print("Obx build title 4");
-                    return Text(Get.find<LoginController>().title4.value);
+                    return Text(controller.title4.value);
                   }),
                 ),
                 Container(
