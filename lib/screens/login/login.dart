@@ -24,12 +24,6 @@ class _LoginScreenState extends State<LoginScreen> {
   Language languageSelected = Language.th;
 
   @override
-  void initState() {
-    super.initState();
-    Get.create(() => LoginController());
-  }
-
-  @override
   Widget build(BuildContext pucontext) {
     var controller = Get.find<LoginController>();
     var controlle2 = Get.find<LoginController>();

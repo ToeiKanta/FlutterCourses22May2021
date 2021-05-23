@@ -1,5 +1,6 @@
 import 'package:example_flutter1/screens/Login/login.dart';
 import 'package:example_flutter1/screens/home.dart';
+import 'package:example_flutter1/screens/login/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -19,12 +20,21 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/login',
       getPages: [
-        GetPage(name: "/login", page: () => LoginScreen()),
+        GetPage(
+            name: "/login", page: () => LoginScreen(), binding: LoginBinding()),
         GetPage(
           name: "/home",
           page: () => HomeScreen(),
         )
       ],
     );
+  }
+}
+
+class LoginBinding extends Bindings {
+  @override
+  void dependencies() {
+    print("put logincontroller");
+    Get.put(LoginController());
   }
 }
