@@ -16,9 +16,17 @@ main() {
     });
   });
 
-  test("should language selected as th", () {
-    var controller = LoginController();
-    controller.setLanguageSelected(Language.th);
-    expect(controller.languageSelected.value, Language.th);
+  group("setLanguageSelected", () {
+    test("should language selected as th", () {
+      var controller = LoginController();
+      controller.setLanguageSelected(Language.th);
+      expect(controller.languageSelected.value, Language.th);
+    });
+
+    test("should language selected as en", () {
+      var controller = LoginController();
+      controller.setLanguageSelected(Language.en);
+      expect(controller.languageSelected.value, Language.en);
+    });
   });
 }
