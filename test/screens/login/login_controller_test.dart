@@ -60,9 +60,11 @@ main() {
         "bs": "harness real-time e-markets"
       }
     };
-    when(mockUserService.getUser())
-        .thenAnswer((_) => Future.value(UserModel.fromJson(userInfo)));
+
+    var userModel = UserModel.fromJson(userInfo);
+    when(mockUserService.getUser()).thenAnswer((_) => Future.value(userModel));
     await controller.onSubmit();
+    verify(mockView.gotoHome(userModel));
   });
 }
 
