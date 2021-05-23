@@ -34,6 +34,12 @@ class _LoginScreenState extends State<LoginScreen> {
     var controller = Get.find<LoginController>();
     var controlle2 = Get.find<LoginController>();
 
+    Get.putAsync(() async {
+      var userService = UserService();
+      await userService.getUser2();
+      return userService;
+    });
+
     print("controller 1 " + controller.hashCode.toString());
     print("controller 2 " + controlle2.hashCode.toString());
 
