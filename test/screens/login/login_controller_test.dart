@@ -3,9 +3,16 @@ import 'package:example_flutter1/screens/login/login_controller.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 main() {
-  test("should retrun flag th", () {
+  group("getImagePathLanguage", () {
     var controller = LoginController();
-    var actual = controller.getImagePathLanguage(Language.th);
-    expect(actual, "assets/thai-flag.png");
+    test("should return flag th", () {
+      var actual = controller.getImagePathLanguage(Language.th);
+      expect(actual, "assets/thai-flag.png");
+    });
+
+    test("should return flag en", () {
+      var actual = controller.getImagePathLanguage(Language.en);
+      expect(actual, "assets/eng-flag.png");
+    });
   });
 }
