@@ -29,4 +29,9 @@ main() {
       expect(controller.languageSelected.value, Language.en);
     });
   });
+
+  test("onSubmit", () async {
+    var controller = LoginController();
+    await controller.onSubmit();
+  });
 }
