@@ -213,11 +213,12 @@ class _LoginScreenState extends State<LoginScreen> {
         try {
           UserModel user = await UserService().getUser(); // call service
           UserModel2 user2 = await UserService().getUser2(); // call service
-          Get.to(HomeScreen(
-            fname: user.fname,
-            lname: user.lname!,
-            email: user2.email,
-          ));
+
+          Get.toNamed('/home', arguments: {
+            "fname": user.fname,
+            "lname": user.lname!,
+            "email": user2.email,
+          });
         } catch (error) {
           print("getUser: $error");
           // handle exception
