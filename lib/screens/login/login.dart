@@ -1,8 +1,6 @@
 import 'package:example_flutter1/const/color.dart';
 import 'package:example_flutter1/models/user_model.dart';
 import 'package:example_flutter1/models/user_model2.dart';
-import 'package:example_flutter1/screens/home.dart';
-import 'package:example_flutter1/screens/login/login_controller.dart';
 import 'package:example_flutter1/services/user_service.dart';
 import 'package:example_flutter1/widgets/logo.dart';
 import 'package:flutter/material.dart';
@@ -25,18 +23,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext pucontext) {
-    var controller = Get.find<LoginController>();
-    var controlle2 = Get.find<LoginController>();
-
-    Get.putAsync(() async {
-      var userService = UserService();
-      await userService.getUser2();
-      return userService;
-    });
-
-    print("controller 1 " + controller.hashCode.toString());
-    print("controller 2 " + controlle2.hashCode.toString());
-
     return Scaffold(
       backgroundColor: AppColors.red,
       body: Container(
@@ -52,30 +38,6 @@ class _LoginScreenState extends State<LoginScreen> {
             // top widget
             Column(
               children: [
-                Container(
-                  child: GetBuilder<LoginController>(builder: (_) {
-                    print("GetBuilder build title 1");
-                    return Text(controller.title1);
-                  }),
-                ),
-                Container(
-                  child: GetBuilder<LoginController>(builder: (_) {
-                    print("GetBuilder build title 2");
-                    return Text(controller.title2);
-                  }),
-                ),
-                Container(
-                  child: GetX<LoginController>(builder: (_) {
-                    print("GetX build title 3");
-                    return Text(controller.title3.value);
-                  }),
-                ),
-                Container(
-                  child: Obx(() {
-                    print("Obx build title 4");
-                    return Text(controlle2.title4.value);
-                  }),
-                ),
                 Container(
                   margin: EdgeInsets.only(
                     top: Get.height * 0.1,
