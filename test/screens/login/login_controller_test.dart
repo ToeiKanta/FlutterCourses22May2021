@@ -1,7 +1,10 @@
 import 'package:example_flutter1/enums/language.dart';
 import 'package:example_flutter1/screens/login/login_controller.dart';
+import 'package:example_flutter1/services/user_service.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 
+@GenerateMocks([UserService])
 main() {
   group("getImagePathLanguage", () {
     var controller = LoginController();
