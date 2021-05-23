@@ -1,6 +1,7 @@
 import 'package:example_flutter1/const/color.dart';
 import 'package:example_flutter1/models/user_model.dart';
 import 'package:example_flutter1/models/user_model2.dart';
+import 'package:example_flutter1/screens/login/login_controller.dart';
 import 'package:example_flutter1/services/user_service.dart';
 import 'package:example_flutter1/widgets/logo.dart';
 import 'package:flutter/material.dart';
@@ -165,17 +166,8 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         backgroundColor: MaterialStateProperty.all(Colors.yellow.shade700),
       ),
-      onPressed: () async {
-        try {
-          UserModel user = await UserService().getUser(); // call service
-          Get.toNamed('/home', arguments: {
-            "name": user.name,
-            "email": user.email,
-          });
-        } catch (error) {
-          print("getUser: $error");
-          // handle exception
-        }
+      onPressed: () {
+        Get.find<LoginController>().onSubmit();
       },
     );
   }
